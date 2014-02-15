@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceList>
+
+	<actionClasses>
+		<class name="common">fgc.app.belong.B01001</class>
+	</actionClasses>
+	
+	<service serviceID="getList" actionClassName="common" mappingMethod="getList" />
+
+</serviceList>

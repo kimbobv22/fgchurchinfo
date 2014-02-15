@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceList isPrimary="true">
+	
+	<service serviceID="help" isPrimary="true">
+		<result>/jsp/app/help/help.jsp</result>
+	</service>
+
+</serviceList>

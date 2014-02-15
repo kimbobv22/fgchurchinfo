@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queryset keyName="app.belong.B01001">
+
+<query keyName="getList">
+SELECT ATFUNC_B_GETTREELVL(BEL.BELONG_ID) LVL
+      ,BEL.BELONG_ID
+      ,BEL.BELONG_NM
+      ,BEL.UP_BELONG_ID
+FROM AT_BELONG BEL
+WHERE 1=1
+<isnotblank columnName="upBelongId">
+AND   BEL.UP_BELONG_ID = #{belongId}
+</isnotblank>
+<isnotblank columnName="upBelongId" isReverse='true'>
+AND   BEL.UP_BELONG_ID IS NULL
+</isnotblank>
+<isnotblank columnName="belongNm">
+AND   ATFUNC_B_GETNM(BEL.BELONG_NM) LIKE CONCAT('%',#{belongNm},'%')
+</isnotblank>
+AND   ATFUNC_B_CANUSE(BEL.BELONG_ID) = 'Y'
+ORDER BY BEL.SORT_CHAR ASC
+</query>
+
+<query keyName="getTree">
+SELECT  ATFUNC_B_GETTREELVL(BEL.BELONG_ID) LVL
+       ,BEL.BELONG_ID
+       ,BEL.BELONG_NM
+       ,BEL.UP_BELONG_ID
+FROM ATVIEW_B_0000001 BEL
+WHERE 1=1
+<isnotblank columnName="belongId">
+AND   BEL.UP_BELONG_ID = #{belongId}
+</isnotblank>
+AND   ATFUNC_B_CANUSE(BEL.BELONG_ID) = 'Y'
+ORDER BY TREEID ASC
+</query>
+
+</queryset>
